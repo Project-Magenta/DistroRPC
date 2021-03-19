@@ -28,10 +28,7 @@ versions ={
 }
 def laporp():
 	global devicetype
-	if product[0:7] == "MacBook":
-		devicetype = "laptop"
-	else:
-		devicetype = "desktop"
+	devicetype = "laptop" if product[0:7] == "MacBook" else "desktop"
 def findver():
 	global bigicon
 	try:
