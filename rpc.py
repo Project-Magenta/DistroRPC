@@ -60,10 +60,9 @@ class DiscordIpcClient(metaclass=ABCMeta):
         # {'cmd': 'DISPATCH', 'data': {'v': 1, 'config': {...}}, 'evt': 'READY', 'nonce': None}
         if ret_op == OP_FRAME and ret_data['cmd'] == 'DISPATCH' and ret_data['evt'] == 'READY':
             return
-        else:
-            if ret_op == OP_CLOSE:
-                self.close()
-            raise RuntimeError(ret_data)
+        if ret_op == OP_CLOSE:
+            self.close()
+        raise RuntimeError(ret_data)
 
     @abstractmethod
     def _write(self, date: bytes):
